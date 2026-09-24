@@ -16,6 +16,10 @@ services:
       - lisa_hostkeys:/etc/ssh/hostkeys
       - ./ssh/authorized_keys:/config/authorized_keys:ro
 
+    mem_limit: 2g
+    cpus: 2
+    pids_limit: 256
+
 networks:
   lisa_net:
     driver: bridge
