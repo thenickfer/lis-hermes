@@ -87,11 +87,17 @@ docker compose up -d
 docker compose exec hermes hermes setup # Initial setup
 docker compose exec hermes hermes profile create PROFILE_NAME # Create additional profiles
 
+# Optional but recommended: Enable gateway multiplexing so the gateway serves every profile through one listener
+docker compose exec hermes hermes config set gateway.multiplex_profiles true
+docker compose restart hermes
+# When multiplexing is active, the gateway routes traffic to each profile via a `/p/<profile>/` prefix.
+
 # If you want to disable the default profile:
 docker compose exec hermes hermes skills opt-out --remove 
 docker compose exec hermes hermes profile use <NEW_DEFAULT_PROFILE> # Makes hermes use the specified profile by default
 
 ```
+
 
 Hermes stores the resulting configuration under:
 
