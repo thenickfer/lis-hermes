@@ -1,0 +1,31 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    restart: unless-stopped
+
+    command: ["gateway", "run"]
+
+    volumes:
+      - ./data:/opt/data
+
+    # Runner LXC on your LAN.
+    # Better to use your actual DNS name once you have one.
+    extra_hosts:
+      - "runner:${RUNNER_IP}"
+
+    # Only expose this if you actually need Hermes' API/dashboard.
+    ports:
+      - "8642:8642" # Gateway
+      # - "9119:9119" # Dashboard
+
+    environment:
+      HERMES_UID: ${HERMES_UID}
+      HERMES_GID: ${HERMES_GID}
+      # HERMES_DASHBOARD: "1"
+      API_SERVER_ENABLED: "true"
+      API_SERVER_HOST: "0.0.0.0"
+      API_SERVER_KEY: ${API_SERVER_KEY}
+
+    mem_limit: ${HERMES_MEM_LIMIT}
+    cpus: ${HERMES_CPUS}

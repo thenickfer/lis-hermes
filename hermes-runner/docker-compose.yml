@@ -1,0 +1,16 @@
+services:
+  lisa:
+    build:
+      context: .
+    container_name: runner-lisa
+    restart: unless-stopped
+
+    ports:
+      - "2201:22"
+
+    volumes:
+      - lisa_workspace:/workspace
+      - ./ssh/authorized_keys:/config/authorized_keys:ro
+
+volumes:
+  lisa_workspace:

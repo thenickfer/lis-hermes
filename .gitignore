@@ -1,0 +1,64 @@
+# Ignore everything inside data/ by default
+data/**
+
+# Allow directories to be traversed
+!data//
+!data/profiles//
+!data/profiles//memories/
+!data/profiles//skills/
+# Root-level Hermes configuration
+!data/config.yaml
+!data/SOUL.md
+!data/profile.yaml
+
+# Root memories
+!data/memories/
+!data/memories/USER.md
+!data/memories/MEMORY.md
+
+# Scripts
+!data/scripts/
+!data/scripts/**
+
+# Hermes-managed skills
+!data/skills/
+!data/skills/**
+
+data/skills/.bundled_manifest
+data/skills/.usage.json
+data/skills/.usage.json.lock
+data/skills/.curator_state
+data/skills/.curator_suppressed
+data/skills/.hub/
+
+# Custom skills
+!data/curated-skills/
+!data/curated-skills/**
+
+# Profiles
+!data/profiles/
+!data/profiles/*/
+!data/profiles/*/config.yaml
+!data/profiles/*/SOUL.md
+!data/profiles/*/profile.yaml
+
+# Profile memories
+!data/profiles/*/memories/
+!data/profiles/*/memories/USER.md
+!data/profiles/*/memories/MEMORY.md
+
+# Profile skills
+!data/profiles/*/skills/
+!data/profiles/*/skills/**
+
+data/profiles/*/skills/.bundled_manifest
+data/profiles/*/skills/.usage.json
+data/profiles/*/skills/.usage.json.lock
+data/profiles/*/skills/.curator_state
+data/profiles/*/skills/.curator_suppressed
+data/profiles/*/skills/.hub/
+
+# Docker Compose
+!docker-compose.yml
+
+.env
