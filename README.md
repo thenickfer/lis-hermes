@@ -4,11 +4,12 @@
 
 This setup uses a single Hermes container with multiple profiles. Each profile connects over SSH to its own runner container.
 
+```text
 Hermes
 ├── coder profile    ──SSH──> runner-coder
 ├── personal profile ──SSH──> runner-personal
 └── ...
-
+```
 
 ### Create SSH keys
 
