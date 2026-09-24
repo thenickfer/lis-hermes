@@ -8,9 +8,16 @@ services:
     ports:
       - "2201:22"
 
+    networks:
+      - lisa_net
+
     volumes:
       - lisa_workspace:/workspace
       - ./ssh/authorized_keys:/config/authorized_keys:ro
+
+networks:
+  lisa_net:
+    driver: bridge
 
 volumes:
   lisa_workspace:

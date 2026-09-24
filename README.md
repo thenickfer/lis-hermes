@@ -65,7 +65,7 @@ Keep the private key (*_ed25519) private. They are mounted into the Hermes conta
 
 Copy the public key to the runner machine
 
-```scp data/ssh/coder_ed25519.pub root@runner:PATH_TO_DIR/lis-hermes/hermes-runner/ssh/authorized_keys```
+```scp data/ssh/hermes_ed25519.pub root@runner:PATH_TO_DIR/lis-hermes/hermes-runner/ssh/authorized_keys```
 
 ### Configure hermes
 Create the Hermes data directory:
