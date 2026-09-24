@@ -1,5 +1,7 @@
 # lis-hermes
 
+** This is a simple boilerplate for initializing a version-controlled hermes agent container with remote ssh terminal backends, feel free to fork this repository. This is supposed to be a simple setup, if you had more sophisticated requirements, you probably wouldn't be here.
+
 This setup uses a single Hermes container with multiple profiles. Each profile connects over SSH to its own runner container.
 
 Hermes
@@ -7,33 +9,6 @@ Hermes
 ├── personal profile ──SSH──> runner-personal
 └── ...
 
-### Set up the runner
-The runner must be configured before setting up Hermes.
-
-On the runner machine:
-
-```sh
-cd hermes-runner 
-docker compose up -d
-```
-
-Verify that the profile containers are running:
-
-```docker compose ps```
-
-For example:
-```
-runner-coder       0.0.0.0:2201->22/tcp
-runner-personal    0.0.0.0:2202->22/tcp
-```
-
-Each runner container must:
-
-- have an hermes user;
-- have sshd running;
-- allow public-key authentication;
-- expose SSH through its assigned port;
-- provide the /workspace directory.
 
 ### Create SSH keys
 
@@ -66,6 +41,35 @@ Keep the private key (*_ed25519) private. They are mounted into the Hermes conta
 Copy the public key to the runner machine
 
 ```scp data/ssh/hermes_ed25519.pub root@runner:PATH_TO_DIR/lis-hermes/hermes-runner/ssh/authorized_keys```
+
+
+### Set up the runner
+The runner must be configured before setting up Hermes.
+
+On the runner machine:
+
+```sh
+cd hermes-runner 
+docker compose up -d
+```
+
+Verify that the profile containers are running:
+
+```docker compose ps```
+
+For example:
+```
+runner-coder       0.0.0.0:2201->22/tcp
+runner-personal    0.0.0.0:2202->22/tcp
+```
+
+Each runner container must:
+
+- have an hermes user;
+- have sshd running;
+- allow public-key authentication;
+- expose SSH through its assigned port;
+- provide the /workspace directory.
 
 ### Configure hermes
 Create the Hermes data directory:
