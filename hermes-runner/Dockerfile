@@ -10,20 +10,26 @@ RUN apt-get update \
         --create-home \
         --shell /bin/bash \
         hermes \
-    && mkdir -p /run/sshd /config /workspace \
-    && chown hermes:hermes /workspace \
-    && printf '%s\n' \
-        'Port 22' \
-        'PermitRootLogin no' \
-        'PasswordAuthentication no' \
-        'KbdInteractiveAuthentication no' \
-        'PubkeyAuthentication yes' \
-        'AllowUsers hermes' \
-        'X11Forwarding no' \
-        'AllowTcpForwarding no' \
-        'AllowAgentForwarding no' \
-        'PermitTunnel no' \
-        > /etc/ssh/sshd_config.d/hermes.conf
+    && mkdir -p \
+        /run/sshd \
+        /config \
+        /workspace \
+        /etc/ssh/hostkeys \
+    && chown hermes:hermes /workspace
+
+RUN printf '%s\n' \
+    'Port 22' \
+    'PermitRootLogin no' \
+    'PasswordAuthentication no' \
+    'KbdInteractiveAuthentication no' \
+    'PubkeyAuthentication yes' \
+    'AllowUsers hermes' \
+    'X11Forwarding no' \
+    'AllowTcpForwarding no' \
+    'AllowAgentForwarding no' \
+    'PermitTunnel no' \
+    'HostKey /etc/ssh/hostkeys/ssh_host_ed25519_key' \
+    > /etc/ssh/sshd_config.d/hermes.conf
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh

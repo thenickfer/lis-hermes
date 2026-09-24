@@ -13,6 +13,7 @@ services:
 
     volumes:
       - lisa_workspace:/workspace
+      - lisa_hostkeys:/etc/ssh/hostkeys
       - ./ssh/authorized_keys:/config/authorized_keys:ro
 
 networks:
@@ -21,3 +22,4 @@ networks:
 
 volumes:
   lisa_workspace:
+  lisa_hostkeys:
